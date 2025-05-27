@@ -1,26 +1,15 @@
 @import "tailwindcss";
-
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+.get-a-quote-btn {
+  background: linear-gradient(90deg, #7c3aed 0%, #a78bfa 100%);
+}
+.get-a-quote-btn:hover {
+  background: linear-gradient(295.47deg, #1210CA 5.96%, #FE7CFC 132.26%);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Ensure pagination is below slides, centered, and with some margin */
+.swiper-pagination {
+  position: relative !important;  /* Remove absolute positioning */
+  margin-top: 1rem;
+  text-align: center;
+  bottom: auto !important;  /* Remove any bottom positioning */
 }
