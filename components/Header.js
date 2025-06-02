@@ -11,7 +11,7 @@ function Header() {
       <div className="py-4 flex items-center justify-between mt-2">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2">
-          <img src="/assets/logo.png" alt="Marcel Paints Logo" className="h-10 w-auto" />
+          <img src="/assets/logo.svg" alt="Marcel Paints Logo" className="h-10 w-auto" />
         </Link>
         <div className="flex gap-10 items-center">
         {/* Desktop Nav Links */}

@@ -5,6 +5,8 @@ import WhyUs1 from "@/components/home/WhyUs1";
 import PaintCollection from "@/components/home/PaintCollection.js";
 import CustomerFeedback from "@/components/home/CustomerFeedback";
 import TrustedUsers from "@/components/home/TrustedUsers";
+import Footer from "@/components/Footer";
+import TouchWithUs from "@/components/home/TouchWithUs";
 export default function Home() {
   return (
     <div>
@@ -14,6 +16,7 @@ export default function Home() {
      <TrustedUsers />
      <CustomerFeedback />
       <WhyUs1 />
+      <TouchWithUs />
     </div>
   );
 }

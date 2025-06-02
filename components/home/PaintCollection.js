@@ -6,21 +6,14 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import { Pagination } from 'swiper/modules';
 
-const bgImgArray = [
-  '/assets/product_bg/Rectangle 24.svg',
-  '/assets/product_bg/Rectangle 25.svg',
-  '/assets/product_bg/Rectangle 26.svg',
-  '/assets/product_bg/Rectangle 27.svg',
-];
-
 export default function PaintCollection() {
   return (
-    <section className="max-w-7xl mx-auto px-4 sm:px-6 py-10">
-      <h2 className="text-center text-purple-700 font-bold text-2xl mb-3">
+    <section className="w-full mx-auto px-4 sm:px-6 py-10 mt-20 sm:mt-24 lg:mt-[160px]">
+      <h2 className="text-center text-purple-700 font-bold text-2xl sm:text-3xl lg:text-[42px] mb-6 sm:mb-8 lg:mb-[36px]">
         Our Premium Paint Collection
       </h2>
-      <p className="text-center max-w-2xl mx-auto mb-10 text-gray-700 text-sm sm:text-base">
-        Discover our range of high-quality paints designed to bring your vision to life.
+      <p className="text-center mx-auto text-gray-700 text-base sm:text-lg lg:text-[24px] mb-10 sm:mb-16 lg:mb-[120px] max-w-[95%] sm:max-w-[700px] lg:max-w-[900px]">
+        Discover our range of high-quality paints designed to bring your vision to life. From vibrant interiors to weather-resistant exteriors, we have the perfect solution for every surface.
       </p>
 
       {/* Mobile Swiper Slider */}
@@ -30,6 +23,7 @@ export default function PaintCollection() {
           pagination={{ clickable: true }}
           spaceBetween={16}
           slidesPerView={1}
+          className="pb-10"
         >
           {productsData.map((product, index) => (
             <SwiperSlide key={product.id}>
@@ -40,7 +34,7 @@ export default function PaintCollection() {
       </div>
 
       {/* Grid layout for larger screens */}
-      <div className="hidden lg:grid grid-cols-4 gap-6">
+      <div className="hidden lg:grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6">
         {productsData.map((product, index) => (
           <ProductCard key={product.id} product={product} index={index} />
         ))}
@@ -54,66 +48,86 @@ function ProductCard({ product, index }) {
   const isEven = index % 2 === 0;
 
   return (
-    <div className="bg-white rounded-2xl shadow-xl p-5 flex flex-col justify-between h-full text-center">
+    <div className="bg-gray-100 rounded-[2.625rem] flex flex-col text-center w-full
+                    max-w-[350px] sm:max-w-[400px] md:max-w-[480px] lg:max-w-full
+                    h-auto lg:h-[620px] gap-[20px] justify-between mx-auto">
+
       {isEven ? (
         <>
-          {/* Image */}
-          <div
-            className="rounded-xl w-full h-40 flex justify-center items-center mb-4"
-            style={{
-              backgroundImage: `url(${bgImgArray[index % bgImgArray.length]})`,
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-            }}
-          >
-            <img src={product.image} alt={product.name} className="w-20 h-20 object-contain" />
+          {/* Image and Button Container */}
+          <div className="flex flex-col items-center justify-center rounded-[2.625rem]
+                          w-full h-[300px] sm:h-[310px] relative overflow-hidden">
+            <img
+              src={product.bgimage}
+              alt="Background"
+              className="w-full h-full rounded-[42px] object-cover"
+            />
+
+            <div className="absolute inset-0 flex flex-col items-center justify-center gap-4 z-10 h-full">
+              <img
+                src={product.image}
+                alt={product.name}
+                className="w-[120px] sm:w-[151px] h-[120px] sm:h-[148px] object-contain"
+              />
+              <button
+                className="btn-gradient-border px-4 sm:px-6 py-2 rounded-[24px] font-medium text-sm sm:text-[1.125rem] w-[13rem] sm:w-[15.563rem] h-[2.5rem] sm:h-[3rem]"
+              >
+                {product.name}
+              </button>
+            </div>
           </div>
 
-          {/* Button */}
-          <button className="bg-purple-600 text-white px-4 py-1.5 rounded-full text-xs font-medium mb-4 text-center mx-auto">
-            {product.name}
-          </button>
-
-          {/* Text */}
-          <h3 className="text-sm font-semibold text-center mb-2 px-2">
-            {product.headline}
-          </h3>
-          <p className="text-xs text-gray-600 text-center mb-3 px-2">
-            {product.description}
-          </p>
-          <a href="#" className="text-purple-600 text-xs font-semibold hover:underline text-center mb-2">
-            Read more...
-          </a>
+          {/* Text Content */}
+          <div className="flex flex-col px-4 py-5 mt-6">
+            <h3 className="font-semibold text-lg sm:text-[1.5rem]">{product.headline}</h3>
+            <p className="text-sm sm:text-[1rem] text-gray-600 mb-3 line-clamp-4">
+              {product.description}
+            </p>
+            <a
+              href="#"
+              className="text-purple-600 text-sm font-semibold hover:underline"
+            >
+              Read more...
+            </a>
+          </div>
         </>
       ) : (
         <>
-          {/* Text */}
-          <h3 className="text-sm font-semibold text-center mb-2 px-2">
-            {product.headline}
-          </h3>
-          <p className="text-xs text-gray-600 text-center mb-3 px-2">
-            {product.description}
-          </p>
-          <a href="#" className="text-purple-600 text-xs font-semibold hover:underline text-center mb-4">
-            Read more...
-          </a>
-
-          {/* Image */}
-          <div
-            className="rounded-xl w-full h-40 flex justify-center items-center mb-4"
-            style={{
-              backgroundImage: `url(${bgImgArray[index % bgImgArray.length]})`,
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-            }}
-          >
-            <img src={product.image} alt={product.name} className="w-20 h-20 object-contain" />
+          {/* Text Content */}
+          <div className="flex flex-col px-4 py-5 mt-6">
+            <h3 className="font-semibold text-lg sm:text-[1.5rem] mb-2">{product.headline}</h3>
+            <p className="text-sm sm:text-[1rem] text-gray-600 mb-3 line-clamp-4">
+              {product.description}
+            </p>
+            <a
+              href="#"
+              className="text-purple-600 text-sm font-semibold hover:underline"
+            >
+              Read more...
+            </a>
           </div>
 
-          {/* Button after image */}
-          <button className="bg-purple-600 text-white px-4 py-1.5 rounded-full text-xs font-medium text-center mx-auto">
-            {product.name}
-          </button>
+          {/* Image and Button Container */}
+          <div className="flex flex-col items-center justify-center rounded-[2.625rem]
+                          w-full h-[300px] sm:h-[310px] relative overflow-hidden">
+            <img
+              src={product.bgimage}
+              alt="Background"
+              className="w-full h-full rounded-[42px] object-cover"
+            />
+            <div className="absolute inset-0 flex flex-col items-center justify-center gap-4 z-10 h-full">
+              <img
+                src={product.image}
+                alt={product.name}
+                className="w-[120px] sm:w-[151px] h-[120px] sm:h-[148px] object-contain"
+              />
+              <button
+                className="btn-gradient-border px-4 sm:px-6 py-2 rounded-[24px] font-medium text-sm sm:text-[1.125rem] w-[13rem] sm:w-[15.563rem] h-[2.5rem] sm:h-[3rem]"
+              >
+                {product.name}
+              </button>
+            </div>
+          </div>
         </>
       )}
     </div>

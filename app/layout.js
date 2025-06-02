@@ -2,6 +2,14 @@ import { Poppins } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { Tenor_Sans } from 'next/font/google';
+
+const tenorSans = Tenor_Sans({
+  subsets: ['latin'],
+  weight: '400',
+  variable: '--font-tenor-sans',
+});
+
 
 const poppins = Poppins({
   subsets: ["latin"],

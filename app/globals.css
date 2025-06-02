@@ -1,4 +1,9 @@
+
+
+@import url('https://fonts.googleapis.com/css2?family=Tenor+Sans&display=swap'); /* ✅ This must come first */
 @import "tailwindcss";
+
+/* Your custom styles can follow */
 .get-a-quote-btn {
   background: linear-gradient(90deg, #7c3aed 0%, #a78bfa 100%);
 }
@@ -6,10 +11,31 @@
   background: linear-gradient(295.47deg, #1210CA 5.96%, #FE7CFC 132.26%);
 }
 
-/* Ensure pagination is below slides, centered, and with some margin */
+/* Swiper Pagination Fix */
 .swiper-pagination {
-  position: relative !important;  /* Remove absolute positioning */
+  position: relative !important;
   margin-top: 1rem;
   text-align: center;
-  bottom: auto !important;  /* Remove any bottom positioning */
+  bottom: auto !important;
 }
+
+/* Button with Gradient Border */
+.btn-gradient-border {
+  border: 2px solid;
+  border-image-slice: 1;
+  border-width: 2px;
+  border-image-source: linear-gradient(295.47deg, #1210CA 5.96%, #FE7CFC 132.26%);
+  background-color: white;
+  color: black;
+  transition: all 0.3s ease;
+  border-radius: 1.5rem !important;
+}
+
+.btn-gradient-border:hover {
+  border-color: transparent;
+  background: linear-gradient(295.47deg, #1210CA 5.96%, #FE7CFC 132.26%);
+  color: white;
+  border-radius: 1.5rem !important;
+}
+
+
