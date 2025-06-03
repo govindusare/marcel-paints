@@ -10,11 +10,11 @@ import TouchWithUs from "@/components/home/TouchWithUs";
 export default function Home() {
   return (
     <div>
-     <HeroSection />
-     <PaintCollection />
-     <AboutUS />
-     <TrustedUsers />
-     <CustomerFeedback />
+      <HeroSection />
+      <PaintCollection />
+      <AboutUS />
+      <TrustedUsers />
+      <CustomerFeedback />
       <WhyUs1 />
       <TouchWithUs />
     </div>
