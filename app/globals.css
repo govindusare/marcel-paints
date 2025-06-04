@@ -38,4 +38,15 @@
   border-radius: 1.5rem !important;
 }
 
+/* Text Gradient */
+.text-gradient {
+  background: linear-gradient(305.68deg, #1210CA -29.17%, #FE7CFC 196.59%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
 
+/* Background Gradient */
+.bg-gradient {
+  background: linear-gradient(305.68deg, #1210CA -29.17%, #FE7CFC 196.59%);
+}

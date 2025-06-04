@@ -26,13 +26,13 @@ function Header() {
           <Link href="/products" className="hover:text-purple-700">
             PRODUCTS
           </Link>
-          <Link href="/about" className="hover:text-purple-700">
+          <Link href="/about-us" className="hover:text-purple-700">
             ABOUT US
           </Link>
           <Link href="/clients" className="hover:text-purple-700">
             CLIENTS
           </Link>
-          <Link href="/contact" className="hover:text-purple-700">
+          <Link href="/contact-us" className="hover:text-purple-700">
             CONTACT US
           </Link>
         </nav>
