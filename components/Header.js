@@ -7,7 +7,7 @@ function Header() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <header className="w-full bg-white">
+    <header className="w-full bg-white px-[42px]">
       <div className="py-4 flex items-center justify-between mt-2">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2">
@@ -15,7 +15,7 @@ function Header() {
         </Link>
         <div className="flex gap-10 items-center">
         {/* Desktop Nav Links */}
-        <nav className="hidden md:flex space-x-9 items-center text-sm font-medium text-gray-700">
+        <nav className="hidden md:flex space-x-9 items-center text-sm font-medium text-gray-700 ">
           <Link
             href="/"
             className="text-purple-700 border-b-2 border-purple-700 pb-3"
@@ -83,7 +83,7 @@ function Header() {
 
       {/* Mobile Menu */}
       {isOpen && (
-        <nav className="md:hidden bg-white px-6 pb-4 space-y-2 text-gray-700 font-medium">
+        <nav className="md:hidden bg-white px-6 pb-4 space-y-2 text-gray-700 font-medium ">
           <Link
             href="/"
             className="block text-purple-700 border-b-2 border-purple-700 pb-1"
