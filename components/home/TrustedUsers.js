@@ -13,18 +13,18 @@ export default function TrustedUsers() {
       {/* Logos */}
       <div className="flex flex-wrap justify-center items-center gap-x-6 gap-y-6 mb-10">
         <img
-          src="/assets/ourclients/image 25.svg"
-          alt="Logo 1"
+          src="/assets/ourclients/MSRDC.svg"
+          alt="MSRDC"
           className="h-10 sm:h-14 md:h-20 w-auto object-contain"
         />
         <img
-          src="/assets/ourclients/image 26.svg"
-          alt="Logo 2"
+          src="/assets/ourclients/J-Kumar.svg"
+          alt="J-Kumar"
           className="h-10 sm:h-14 md:h-20 w-auto object-contain"
         />
         <img
-          src="/assets/ourclients/image 27.svg"
-          alt="Logo 3"
+          src="/assets/ourclients/NHAI.svg"
+          alt="NHAI"
           className="h-10 sm:h-14 md:h-20 w-auto object-contain"
         />
       </div>

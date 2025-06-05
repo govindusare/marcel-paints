@@ -2,56 +2,63 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
+
+const navLinks = [
+  { href: "/", label: "Home", path: "" },
+  { href: "/products", label: "Products", path: "products" },
+  { href: "/about-us", label: "About Us", path: "about-us" },
+  { href: "/clients", label: "Clients", path: "clients" },
+  { href: "/contact-us", label: "Contact Us", path: "contact-us" },
+];
 
 function Header() {
+  const router = useRouter();
+  const path = usePathname();
+
+  // To extract only the first segment after the /
+  const pathname = path.split("/")[1] || "";
+  // console.log("pathname", pathname);
+
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <header className="w-full bg-white px-[42px]">
+    <header className="w-full bg-white px-[2.625rem]">
       <div className="py-4 flex items-center justify-between mt-2">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2">
           <img src="/assets/logo.svg" alt="Marcel Paints Logo" className="h-10 w-auto" />
         </Link>
         <div className="flex gap-10 items-center">
-        {/* Desktop Nav Links */}
-        <nav className="hidden md:flex space-x-9 items-center text-sm font-medium text-gray-700 ">
-          <Link
-            href="/"
-            className="text-purple-700 border-b-2 border-purple-700 pb-3"
-            style={{ marginBottom: "-13px" }}
-          >
-            HOME
-          </Link>
-          <Link href="/products" className="hover:text-purple-700">
-            PRODUCTS
-          </Link>
-          <Link href="/about-us" className="hover:text-purple-700">
-            ABOUT US
-          </Link>
-          <Link href="/clients" className="hover:text-purple-700">
-            CLIENTS
-          </Link>
-          <Link href="/contact-us" className="hover:text-purple-700">
-            CONTACT US
-          </Link>
-        </nav>
+          {/* Desktop Nav Links */}
+          <nav className="hidden md:flex space-x-9 items-center text-sm font-medium text-[#232323] ">
+            {navLinks.map((link, index) => {
+              return (
+                <span
+                  key={index}
+                  onClick={() => router.push(link.href)}
+                  className={`${pathname === link.path ? "text-purple-700 border-b-2 border-purple-700" : ""} pb-2 cursor-pointer uppercase`}
+                >
+                  {link.label}
+                </span>)
+            })}
+          </nav>
 
-        {/* GET A QUOTE Button */}
-        <div className="hidden md:block">
-          <Link
-            href="/get-a-quote"
-            className="get-a-quote-btn text-white px-5 py-2 rounded-full text-sm font-semibold transition"
-          >
-            GET A QUOTE
-          </Link>
-        </div>
+          {/* GET A QUOTE Button */}
+          <div className="hidden md:block">
+            <Link
+              href="/get-a-quote"
+              className="get-a-quote-btn text-white px-5 py-2 rounded-full text-sm font-semibold transition"
+            >
+              GET A QUOTE
+            </Link>
+          </div>
         </div>
 
 
         {/* Mobile Menu Button */}
         <button
-          className="md:hidden text-gray-700 focus:outline-none"
+          className="md:hidden text-[#232323] focus:outline-none"
           onClick={() => setIsOpen(!isOpen)}
           aria-label="Toggle menu"
         >
@@ -83,26 +90,24 @@ function Header() {
 
       {/* Mobile Menu */}
       {isOpen && (
-        <nav className="md:hidden bg-white px-6 pb-4 space-y-2 text-gray-700 font-medium ">
-          <Link
-            href="/"
-            className="block text-purple-700 border-b-2 border-purple-700 pb-1"
-            onClick={() => setIsOpen(false)}
-          >
-            HOME
-          </Link>
-          <Link href="/products" className="block hover:text-purple-700" onClick={() => setIsOpen(false)}>
-            PRODUCTS
-          </Link>
-          <Link href="/about" className="block hover:text-purple-700" onClick={() => setIsOpen(false)}>
-            ABOUT US
-          </Link>
-          <Link href="/clients" className="block hover:text-purple-700" onClick={() => setIsOpen(false)}>
-            CLIENTS
-          </Link>
-          <Link href="/contact" className="block hover:text-purple-700" onClick={() => setIsOpen(false)}>
-            CONTACT US
-          </Link>
+        <nav className="md:hidden bg-white px-6 pb-4 space-y-2 text-[#232323] font-medium ">
+
+          {navLinks.map((link, index) => {
+            return (
+              <div key={index}>
+                <span
+                  className={`${pathname === link.path ? "text-purple-700 border-b-2 border-purple-700" : ""} inline-block pb-1 cursor-pointer uppercase`}
+                  onClick={() => {
+                    router.push(link.href);
+                    setIsOpen(false)
+                  }}
+                >
+                  {link.label}
+                </span>
+              </div>
+            )
+          })}
+
           <Link
             href="/get-a-quote"
             className="get-a-quote-btn block text-white text-center py-2 rounded-full mt-2 font-semibold transition"

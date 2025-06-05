@@ -1,22 +1,27 @@
+"use client";
+
 import HeroSection from '@/components/home/HeroSection';
 import TrustedUsers from '@/components/home/TrustedUsers';
 import { productsData } from '@/lib/data';
 import Image from 'next/image';
 import React from 'react';
+import { useRouter } from 'next/navigation';
 
 export default function Productpage() {
+  const router = useRouter();
+
   return (
     <div className="min-h-screen bg-white mb-20">
       {/* Hero Section */}
       <HeroSection />
 
       {/* Paint Products Section */}
-      <section className=" pb-10">
-        <div className="text-center  mt-[140px] ">
-          <h2 className="text-purple-700 text-[28px] md:text-[42px] font-bold mb-4">
+      <section className="pb-10">
+        <div className="text-center mt-[8.75rem] flex flex-col items-center justify-center mx-[1rem]">
+          <h2 className="w-[12.5rem] sm:w-full text-gradient text-[1.75rem] md:text-[2.625rem] font-medium sm:font-semibold mb-4">
             Our Premium Paint Products
           </h2>
-          <p className="text-gray-600 max-w-[974px] mx-auto flex  text-[24px] ">
+          <p className="text-gray-600 text-[0.875rem] sm:text-[1.5rem] w-full sm:w-[65%]">
             Discover our range of high-quality paints designed to bring your vision to life.
             From vibrant interiors to weather-resistant exteriors, we have the perfect solution
             for every surface.
@@ -30,14 +35,13 @@ export default function Productpage() {
             className={`w-full ${index % 2 !== 0 ? 'bg-gray-100' : 'bg-white'}`}
           >
             <div
-              className={`flex flex-col md:flex-row items-center justify-between gap-10 px-4  py-10 md:px-[150px] md:py-[100px] max-w-[1440px] h-[732px] mx-auto ${
-                index % 2 !== 0 ? 'md:flex-row-reverse' : ''
-              }`}
+              className={`flex flex-col md:flex-row items-center justify-between gap-10 px-4  py-10 md:px-[9.375rem] md:py-[6.25rem] max-w-[1440px] h-[45.75rem] mx-auto ${index % 2 !== 0 ? 'md:flex-row-reverse' : ''
+                }`}
             >
               {/* Product Image Group with Name Above (Mobile) */}
               <div className="flex-1 flex flex-col  text-start ">
                 {/*Product Name for mobile view */}
-                <h3 className="block md:hidden mb-4 text-[24px] font-bold  text-gray-900 text-start">
+                <h3 className="block md:hidden mb-4 text-[1.5rem] font-bold  text-gray-900 text-start">
                   {product.name}
                 </h3>
 
@@ -46,7 +50,7 @@ export default function Productpage() {
                   alt={product.name}
                   width={400}
                   height={400}
-                  className="object-contain max-h-[280px] sm:max-h-[320px] md:max-h-[400px] drop-shadow-[0_10px_30px_rgba(0,0,0,0.25)]"
+                  className="object-contain max-h-[17.5rem] sm:max-h-[20rem] md:max-h-[25rem] drop-shadow-[0_10px_30px_rgba(0,0,0,0.25)]"
                 />
               </div>
 
@@ -54,14 +58,14 @@ export default function Productpage() {
               <div className="flex-1 mt-8 md:mt-0 ">
                 <div className="space-y-3 text-left">
                   {/*  Product Name for desktop view */}
-                  <h3 className="hidden md:block text-[24px] mb-[35px] md:text-[36px] font-bold text-gray-900">
+                  <h3 className="hidden md:block text-[1.5rem] mb-[2.188rem] md:text-[2.25rem] font-bold text-gray-900">
                     {product.name}
                   </h3>
 
-                  <h4 className="text-[18px] md:text-[24px] font-semibold text-gray-700">
+                  <h4 className="text-[1.125rem] md:text-[1.5rem] font-semibold text-gray-700">
                     {product.headline}
                   </h4>
-                  <p className="text-[14px] md:text-[18px] text-gray-600 leading-6">
+                  <p className="text-[0.875rem] md:text-[1.125rem] text-gray-600 leading-6">
                     {product.description}
                   </p>
 
@@ -70,7 +74,7 @@ export default function Productpage() {
                     {product.keyfeatures?.map((feature) => (
                       <div
                         key={feature.id}
-                        className="w-[40px] h-[40px] md:w-[52px] md:h-[52px] flex-shrink-0 flex items-center justify-center border rounded-lg bg-gray-50 shadow-sm"
+                        className="w-[2.5rem] h-[2.5rem] md:w-[3.25rem] md:h-[3.25rem] flex-shrink-0 flex items-center justify-center border rounded-lg bg-gray-50 shadow-sm"
                       >
                         <Image
                           src={
@@ -86,6 +90,12 @@ export default function Productpage() {
                         />
                       </div>
                     ))}
+                  </div>
+
+                  <div className='mt-[1.5rem] sm:mt-[2.813rem]'>
+                    <button onClick={() => router.push(`/products/${product.id}`)} className="bg-gradient text-white text-[1rem] sm:text-[1.25rem] rounded-[2.188rem] px-[1.5rem] py-[0.5rem] sm:px-[2.5rem] sm:py-[1rem] cursor-pointer">
+                      View Product
+                    </button>
                   </div>
                 </div>
               </div>

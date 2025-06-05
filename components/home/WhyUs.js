@@ -57,63 +57,63 @@ function WhyUs() {
     <div className="flex flex-col items-center justify-center mx-[1rem] my-[1.5rem] sm:mx-[2.625rem] sm:my-[3.125rem]">
       {/* Section heading */}
       <div className="text-center space-y-4">
-        <h1 className="text-[1.5rem] sm:text-[42px] font-semibold text-gradient">
+        <h1 className="text-[1.5rem] sm:text-[2.625rem] font-semibold text-gradient">
           Why Us?
         </h1>
-        <p className="text-[14px] sm:text-[1.5rem] w-full sm:w-[800px]">
+        <p className="text-[0.875rem] sm:text-[1.5rem] w-full sm:w-[50rem]">
           Hear from homeowners, designers, and contractors who have transformed
           spaces with our premium paints.
         </p>
       </div>
 
-      <div className="w-full flex flex-col sm:flex-row items-center justify-center gap-[20px] my-[30px] sm:my-[80px]">
-        <div className="w-full sm:w-1/2 grid grid-cols-1 gap-[1rem] sm:gap-[20px]">
+      <div className="w-full flex flex-col sm:flex-row items-center justify-center gap-[1.25rem] my-[1.875rem] sm:my-[5rem]">
+        <div className="w-full sm:w-1/2 grid grid-cols-1 gap-[1rem] sm:gap-[1.25rem]">
           {firsGridData.map((cval, index) => {
             return (
               <div
                 key={index}
-                className="flex sm:flex-col justify-center gap-[16px] sm:gap-[32px] rounded-[20px] sm:rounded-[42px] bg-[#F3F3F3] shadow text-[#232323] h-auto sm:h-[410px] p-[1rem] sm:px-[32px]"
+                className="flex sm:flex-col justify-center gap-[1rem] sm:gap-[2rem] rounded-[1.25rem] sm:rounded-[2.625rem] bg-[#F3F3F3] shadow text-[#232323] h-auto sm:h-[25.625rem] p-[1rem] sm:px-[2rem]"
                 onMouseEnter={() => setHoveredIndexLeft(index)} // Hover event
                 onMouseLeave={() => setHoveredIndexLeft(null)} // Reset hover event
               >
-                <div className={`flex items-center justify-center w-[37px] h-[37px] sm:w-[166px] sm:h-[166px] rounded-[8px] sm:rounded-[16px] mt-2 sm:mt-0 ${hoveredIndexLeft === index ? "bg-gradient" : "border-1 sm:border-2 border-[#1210CA]"}`}>
+                <div className={`flex items-center justify-center w-[2.313rem] h-[2.313rem] sm:w-[10.375rem] sm:h-[10.375rem] rounded-[0.5rem] sm:rounded-[1rem] mt-2 sm:mt-0 ${hoveredIndexLeft === index ? "bg-gradient" : "border-1 sm:border-2 border-[#1210CA]"}`}>
                   <Image
                     src={hoveredIndexLeft === index ? cval.image2 : cval.image1}
                     alt=""
                     width={86}
                     height={86}
-                    className="w-[26px] h-[28px] sm:w-[86px] sm:h-[86px]"
+                    className="w-[1.625rem] h-[1.75rem] sm:w-[5.375rem] sm:h-[5.375rem]"
                   />
                 </div>
-                <div className="w-[80%] sm:w-full space-y-[16px] sm:space-y-[32px]">
+                <div className="w-[80%] sm:w-full space-y-[1rem] sm:space-y-[2rem]">
                   <h3 className="text-[1rem] sm:text-[1.5rem] font-semibold">{cval.title}</h3>
-                  <p className="text-[14px] sm:text-[1rem] font-normal">{cval.description}</p>
+                  <p className="text-[0.875rem] sm:text-[1rem] font-normal">{cval.description}</p>
                 </div>
               </div>
             );
           })}
         </div>
-        <div className="w-full sm:w-1/2 grid grid-cols-1 gap-[20px]">
+        <div className="w-full sm:w-1/2 grid grid-cols-1 gap-[1.25rem]">
           {secondGridData.map((cval, index) => {
             return (
               <div
                 key={index}
-                className="flex justify-center gap-[16px] sm:gap-[24px] rounded-[20px] sm:rounded-[42px] bg-[#F3F3F3] shadow text-[#232323] h-auto sm:h-[268px] p-[1rem] sm:px-[32px] sm:py-[42px]"
+                className="flex justify-center gap-[1rem] sm:gap-[1.5rem] rounded-[1.25rem] sm:rounded-[2.625rem] bg-[#F3F3F3] shadow text-[#232323] h-auto sm:h-[16.75rem] p-[1rem] sm:px-[2rem] sm:py-[2.625rem]"
                 onMouseEnter={() => setHoveredIndexRight(index)} // Hover event
                 onMouseLeave={() => setHoveredIndexRight(null)} // Reset hover event
               >
-                <div className={`flex items-center justify-center w-[37px] h-[37px] sm:w-[72px] sm:h-[72px] rounded-[8px] sm:rounded-[16px] mt-2 sm:mt-0 ${hoveredIndexRight === index ? "bg-gradient" : "border-1 border-[#1210CA]"}`}>
+                <div className={`flex items-center justify-center w-[2.313rem] h-[2.313rem] sm:w-[4.5rem] sm:h-[4.5rem] rounded-[0.5rem] sm:rounded-[1rem] mt-2 sm:mt-0 ${hoveredIndexRight === index ? "bg-gradient" : "border-1 border-[#1210CA]"}`}>
                   <Image
                     src={hoveredIndexRight === index ? cval.image2 : cval.image1}
                     alt=""
                     width={42}
                     height={42}
-                    className="w-[26px] h-[28px] sm:w-[42px] sm:h-[42px]"
+                    className="w-[1.625rem] h-[1.75rem] sm:w-[2.625rem] sm:h-[2.625rem]"
                   />
                 </div>
-                <div className="w-[80%] space-y-[16px] sm:space-y-[32px]">
+                <div className="w-[80%] space-y-[1rem] sm:space-y-[2rem]">
                   <h3 className="text-[1rem] sm:text-[1.5rem] font-semibold">{cval.title}</h3>
-                  <p className="text-[14px] sm:text-[1rem] font-normal">{cval.description}</p>
+                  <p className="text-[0.875rem] sm:text-[1rem] font-normal">{cval.description}</p>
                 </div>
               </div>
             );

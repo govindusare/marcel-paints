@@ -2,9 +2,10 @@ import React from "react";
 
 function ContactUsForm() {
   return (
-    <div className="flex flex-col items-center justify-center gap-[1.5rem] mx-0 my-[1.5rem] sm:mx-[2.625rem] sm:my-[3.125rem] bg-gray-200 rounded-none sm:rounded-[2.625rem] overflow-hidden">
+    <div className="relative flex flex-col items-center justify-center gap-[1.5rem] mx-0 my-[1.5rem] sm:mx-[2.625rem] sm:my-[3.125rem] rounded-none sm:rounded-[2.625rem] overflow-hidden bg-[url(/assets/contactus/contact-us-form-bg.jpg)] bg-origin-border bg-amber-300 bg-[-59rem_0rem] sm:bg-center bg-cover">
+      <div className="absolute inset-0 bg-white opacity-40 z-0"></div> {/* Overlay with opacity */}
       {/* Contact Us Header */}
-      <div className="text-center space-y-3 mt-[2.813rem] sm:mt-[5.625rem]">
+      <div className="text-center space-y-3 mt-[2.813rem] sm:mt-[5.625rem] z-10">
         <h1 className="text-[1.5rem] sm:text-[4.5rem] font-semibold leading-[1.875rem] sm:leading-[5rem] text-gradient">
           Reach Out to Us
         </h1>
@@ -13,7 +14,7 @@ function ContactUsForm() {
         </p>
       </div>
 
-      <div className="flex items-center flex-col-reverse sm:flex-row gap-4 p-[1rem] sm:p-[7.188rem]">
+      <div className="flex items-center flex-col-reverse sm:flex-row gap-4 p-[1rem] sm:p-[7.188rem] z-10">
         {/* Contact Us Details */}
         <div className="text-[1.125rem] font-normal text-[#232323] space-y-8 py-6 sm:py-0 w-full sm:w-1/2">
           <div className="space-y-3 w-full sm:w-[21.25rem]">
