@@ -50,7 +50,7 @@ export default function Productpage() {
                   alt={product.name}
                   width={400}
                   height={400}
-                  className="object-contain max-h-[17.5rem] sm:max-h-[20rem] md:max-h-[25rem] drop-shadow-[0_10px_30px_rgba(0,0,0,0.25)]"
+                  className="object-contain max-h-[17.5rem] sm:max-h-[20rem] md:max-h-[25rem] "
                 />
               </div>
 

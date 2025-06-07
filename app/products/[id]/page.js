@@ -1,10 +1,9 @@
 import Image from 'next/image';
-import { FaStar } from 'react-icons/fa'; // Font Awesome Stars
-import { productsData } from '@/lib/data'; // Ensure your data is correctly imported
+import { FaStar } from 'react-icons/fa';
+import { productsData } from '@/lib/data';
 import TouchWithUs from '@/components/home/TouchWithUs';
-import Link from 'next/link'; // ✅ Import Link
+import Link from 'next/link';
 
-// Fetching product details based on the id passed in the URL params
 const ProductD = async ({ params }) => {
   const { id } = await params;
   const product = productsData.find((prod) => prod.id === parseInt(id));
@@ -14,7 +13,7 @@ const ProductD = async ({ params }) => {
   }
 
   const ProductSection = () => (
-    <div className="rounded-[42px] w-full mt-[40px] ">
+    <div className="rounded-[42px] w-full mt-[40px]">
       <div
         className="text-gray-900 h-[320px] bg-cover bg-center"
         style={{ backgroundImage: `url('/Mask group.svg')` }}
@@ -28,16 +27,12 @@ const ProductD = async ({ params }) => {
   );
 
   const renderStars = (rating) => {
-    const stars = [];
-    for (let i = 1; i <= 5; i++) {
-      stars.push(
-        <FaStar
-          key={i}
-          className={`inline-block ${i <= rating ? 'text-yellow-400' : 'text-gray-300'}`}
-        />
-      );
-    }
-    return stars;
+    return Array.from({ length: 5 }, (_, i) => (
+      <FaStar
+        key={i}
+        className={`inline-block ${i < rating ? 'text-yellow-400' : 'text-gray-300'}`}
+      />
+    ));
   };
 
   return (
@@ -99,16 +94,41 @@ const ProductD = async ({ params }) => {
             </div>
           </div>
 
-          {/* Product Image */}
+          {/* Product Image + Sample Images */}
           <div className="w-full">
-            <div className="bg-gray-100 rounded-[42px] w-[612px] h-[678px] flex justify-center items-center">
+            {/* Main Product Image */}
+            <div className="bg-gray-100 rounded-[42px] w-[612px] h-[678px] flex justify-center items-center mx-auto">
               <Image
-                src={product.image}
+                src={product.imageGroup}
                 alt={product.name}
                 width={600}
                 height={400}
-                className="w-[400px] h-[400px] mx-auto"
+                className="w-[530px] h-[500px] mx-auto object-contain"
               />
+            </div>
+
+            {/* ✅ Display current product image in variations */}
+            <div className="flex gap-4 mt-6 justify-center">
+              {[0, 1, 2].map((index) => (
+                <div
+                  key={index}
+                  className="w-[188px] h-[192px] rounded-[42px] overflow-hidden border border-gray-300 shadow-sm"
+                >
+                  <Image
+                    src={product.image}
+                    alt={`Sample ${index + 1}`}
+                    width={96}
+                    height={96}
+                    className={`object-cover w-full h-full transition-transform duration-300 ${
+                      index === 0
+                        ? 'scale-[1.4]'
+                        : index === 1
+                        ? 'rotate-[30deg]'
+                        : 'rotate-[-25deg]'
+                    }`}
+                  />
+                </div>
+              ))}
             </div>
           </div>
         </div>
@@ -118,23 +138,25 @@ const ProductD = async ({ params }) => {
       <div className="container mx-auto px-4 mt-12 mb-16 w-[3156px] h-[387px]">
         <h3 className="text-[20px] font-semibold text-gray-800 mb-6">Other Products</h3>
         <div className="grid grid-cols-4 gap-6 overflow-x-auto">
-
           {productsData
             .filter((item) => item.id !== parseInt(id))
+            .slice(0, 3)
             .map((item, i) => (
-              <div key={item.id} className={`${i == 0 ? "col-span-2" : null}`}>
+              <div key={item.id} className={`${i === 0 ? 'col-span-2' : ''}`}>
                 <Link href={`/products/${item.id}`} passHref>
-
-                  <div className={`relative h-[310px] rounded-[24px] overflow-hidden  bg-gray-100  `}>
-                    <div className='flex items-center justify-end w-full' >
+                  <div className="relative h-[310px] rounded-[24px] overflow-hidden bg-gray-100">
+                    <div className="flex items-center justify-end w-full">
                       <Image
                         src={item.image}
                         alt={item.name}
                         width={320}
                         height={240}
-                        className={`${i == 0 ? "rotate-[-25deg] h-[500px] w-[512px] translate-x-1/3 -translate-1/4 " : "h-[240px] translate-1/3"}  object-cover  `}
+                        className={`${
+                          i === 0
+                            ? 'rotate-[-25deg] h-[500px] w-[512px] translate-x-1/3 -translate-y-1/4'
+                            : 'h-[330px] w-[333px] translate-x-1/4'
+                        }`}
                       />
-                      {/* transition-transform duration-300 group-hover:scale-105 */}
                     </div>
                     <div className="absolute bottom-6 left-4 bg-white px-4 py-2 rounded-full flex items-center justify-between gap-2 shadow-md">
                       <span className="text-sm font-medium text-gray-700">{item.name}</span>
@@ -148,6 +170,7 @@ const ProductD = async ({ params }) => {
             ))}
         </div>
       </div>
+
       <TouchWithUs />
     </div>
   );

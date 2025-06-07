@@ -1,9 +1,10 @@
-
-
+/* Import fonts before Tailwind */
 @import url('https://fonts.googleapis.com/css2?family=Tenor+Sans&display=swap'); /* ✅ This must come first */
-@import "tailwindcss";
+@import "tailwindcss"; /* Tailwind import */
 
-/* Your custom styles can follow */
+/* Custom Styles */
+
+/* Button with Gradient Background */
 .get-a-quote-btn {
   background: linear-gradient(90deg, #7c3aed 0%, #a78bfa 100%);
 }
@@ -19,7 +20,7 @@
   bottom: auto !important;
 }
 
-/* Button with Gradient Border */
+/* Gradient Border Button */
 .btn-gradient-border {
   border: 2px solid;
   border-image-slice: 1;
@@ -31,6 +32,7 @@
   border-radius: 1.5rem !important;
 }
 
+/* Hover for Gradient Border Button */
 .btn-gradient-border:hover {
   border-color: transparent;
   background: linear-gradient(295.47deg, #1210CA 5.96%, #FE7CFC 132.26%);
@@ -49,4 +51,14 @@
 /* Background Gradient */
 .bg-gradient {
   background: linear-gradient(305.68deg, #1210CA -29.17%, #FE7CFC 196.59%);
+}
+
+/* ✅ Swiper Overflow Visible - All Devices */
+.swiper,
+.swiper-wrapper {
+  overflow: visible !important;
+}
+
+.swiper-slide {
+  transition: transform 0.5s ease;
 }

@@ -27,11 +27,11 @@ export default function CustomerFeedback() {
         spaceBetween={24}
         pagination={{ clickable: true }}
         modules={[Pagination, A11y]}
-        className="w-full max-w-[58.625rem] pb-12"
+        className="w-full max-w-[58.625rem] pb-6 sm:pb-12"
       >
         {customerFeedback.map((item) => (
           <SwiperSlide key={item.id}>
-            <div className="flex flex-col lg:grid lg:grid-cols-2 w-full bg-gray-100 rounded-[2.625rem] overflow-hidden">
+            <div className="flex flex-col lg:grid lg:grid-cols-2 w-full bg-gray-100 rounded-[2.625rem] h-[580px] lg:h-[680px] overflow-hidden mt-4 sm:mt-12">
               {/* Image */}
               <div className="relative w-full h-[250px] sm:h-[350px] lg:h-auto">
                 <Image
@@ -48,13 +48,13 @@ export default function CustomerFeedback() {
                 <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-1">
                   {item.name}
                 </h3>
-                <p className="text-sm text-gray-500 mb-4">{item.title}</p>
+                <p className="text-sm text-gray-500 mb-4">{item.title}</p> 
                 <p className="text-sm sm:text-base lg:text-[1.25rem] mt-4 lg:mt-[1.25rem] lg:pr-[6rem] text-gray-700 leading-relaxed">
                   {item.message}
                 </p>
 
                 {/* Stars */}
-                <div className="flex justify-center lg:justify-start gap-1 mt-6 lg:mt-[4.875rem]">
+                <div className="flex lg:justify-start gap-1 mt-4 sm:mt-6 lg:mt-[4.875rem]">
                   {Array.from({ length: 5 }).map((_, i) => (
                     <span
                       key={i}
@@ -74,9 +74,15 @@ export default function CustomerFeedback() {
       <style jsx global>{`
         .swiper-pagination {
           position: relative !important;
-          margin-top: 2rem;
+          margin-top: 1.5rem !important; /* reduced from 2rem */
           bottom: auto !important;
           text-align: center;
+        }
+
+        @media (min-width: 640px) {
+          .swiper-pagination {
+            margin-top: 2rem !important;
+          }
         }
       `}</style>
     </section>

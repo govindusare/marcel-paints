@@ -1,5 +1,4 @@
 'use client';
-
 import { productsData } from '@/lib/data';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
@@ -17,15 +16,15 @@ export default function PaintCollection() {
       </p>
 
       {/* Mobile Swiper Slider */}
-      <div className="block lg:hidden">
+      <div className="block lg:hidden ">
         <Swiper
           modules={[Pagination]}
           pagination={{ clickable: true }}
           spaceBetween={16}
           slidesPerView={1}
-          className="pb-10"
+          className="pb-10 overflow-visible" // ✅ overflow enabled
         >
-          {productsData.map((product, index) => (
+          {productsData.slice(0, 4).map((product, index) => (
             <SwiperSlide key={product.id}>
               <ProductCard product={product} index={index} />
             </SwiperSlide>
@@ -34,8 +33,8 @@ export default function PaintCollection() {
       </div>
 
       {/* Grid layout for larger screens */}
-      <div className="hidden lg:grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6">
-        {productsData.map((product, index) => (
+      <div className="lg:grid grid-cols-4 sm:grid-cols-4 xl:grid-cols-4 gap-6 hidden">
+        {productsData.slice(0, 4).map((product, index) => (
           <ProductCard key={product.id} product={product} index={index} />
         ))}
       </div>
@@ -43,15 +42,14 @@ export default function PaintCollection() {
   );
 }
 
-// 🔁 Reusable Card Component
+// Reusable Card Component
 function ProductCard({ product, index }) {
   const isEven = index % 2 === 0;
 
   return (
     <div className="bg-gray-100 rounded-[2.625rem] flex flex-col text-center w-full
                     max-w-[350px] sm:max-w-[400px] md:max-w-[480px] lg:max-w-full
-                    h-auto lg:h-[620px] gap-[20px] justify-between mx-auto">
-
+                    h-[620px] gap-[20px] justify-between mx-auto">
       {isEven ? (
         <>
           {/* Image and Button Container */}
@@ -62,7 +60,6 @@ function ProductCard({ product, index }) {
               alt="Background"
               className="w-full h-full rounded-[42px] object-cover"
             />
-
             <div className="absolute inset-0 flex flex-col items-center justify-center gap-4 z-10 h-full">
               <img
                 src={product.image}
@@ -70,7 +67,7 @@ function ProductCard({ product, index }) {
                 className="w-[120px] sm:w-[151px] h-[120px] sm:h-[148px] object-contain"
               />
               <button
-                className="btn-gradient-border px-4 sm:px-6 py-2 rounded-[24px] font-medium text-sm sm:text-[1.125rem] w-[13rem] sm:w-[15.563rem] h-[2.5rem] sm:h-[3rem]"
+                className="px-4 sm:px-6 py-2 rounded-[24px] font-medium text-sm sm:text-[1.125rem] w-full max-w-[15rem] min-w-[13rem] h-[2.5rem] sm:h-[3rem] border-1 border-purple-600 bg-white hover:bg-gradient-to-r hover:bg-[#1210CA] hover:border-transparent hover:text-white text-center whitespace-nowrap overflow-hidden "
               >
                 {product.name}
               </button>
@@ -122,7 +119,7 @@ function ProductCard({ product, index }) {
                 className="w-[120px] sm:w-[151px] h-[120px] sm:h-[148px] object-contain"
               />
               <button
-                className="btn-gradient-border px-4 sm:px-6 py-2 rounded-[24px] font-medium text-sm sm:text-[1.125rem] w-[13rem] sm:w-[15.563rem] h-[2.5rem] sm:h-[3rem]"
+                className="px-4 sm:px-6 py-2 rounded-[24px] font-medium text-sm sm:text-[1.125rem] w-full max-w-[15rem] min-w-[13rem] h-[2.5rem] sm:h-[3rem] border-1 border-purple-600 bg-white hover:bg-gradient-to-r hover:bg-[#1210CA] hover:border-transparent hover:text-white"
               >
                 {product.name}
               </button>
