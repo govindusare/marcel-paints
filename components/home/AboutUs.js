@@ -3,7 +3,7 @@ import Image from "next/image";
 
 function AboutUs() {
   return (
-    <section className="flex flex-col md:flex-row bg-gray-100 rounded-[2rem] overflow-hidden shadow-md mx-auto mt-10 w-full">
+    <section className="flex flex-col md:flex-row bg-gray-100 rounded-[2rem] overflow-hidden  mx-auto mt-10 w-full">
       {/* Image Section */}
       <div className="relative w-full md:w-1/2 h-[15.625rem] sm:h-[21.875rem] md:h-[46.625rem]">
         <Image

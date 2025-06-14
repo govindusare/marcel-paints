@@ -7,7 +7,7 @@ import { Pagination } from 'swiper/modules';
 
 export default function PaintCollection() {
   return (
-    <section className="w-full mx-auto px-4 sm:px-6 py-10 mt-20 sm:mt-24 lg:mt-[160px]">
+    <section className="w-full mx-auto px-4 sm:px-6 py-10 mt-20 sm:mt-24 lg:mt-[160px] max-w-screen">
       <h2 className="text-center text-purple-700 font-bold text-2xl sm:text-3xl lg:text-[42px] mb-6 sm:mb-8 lg:mb-[36px]">
         Our Premium Paint Collection
       </h2>
@@ -16,7 +16,7 @@ export default function PaintCollection() {
       </p>
 
       {/* Mobile Swiper Slider */}
-      <div className="block lg:hidden ">
+      <div className="block lg:hidden overflow-scroll">
         <Swiper
           modules={[Pagination]}
           pagination={{ clickable: true }}

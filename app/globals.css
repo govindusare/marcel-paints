@@ -8,6 +8,7 @@
 .get-a-quote-btn {
   background: linear-gradient(90deg, #7c3aed 0%, #a78bfa 100%);
 }
+
 .get-a-quote-btn:hover {
   background: linear-gradient(295.47deg, #1210CA 5.96%, #FE7CFC 132.26%);
 }
@@ -53,7 +54,7 @@
   background: linear-gradient(305.68deg, #1210CA -29.17%, #FE7CFC 196.59%);
 }
 
-/* ✅ Swiper Overflow Visible - All Devices */
+/* Swiper Overflow Visible - All Devices */
 .swiper,
 .swiper-wrapper {
   overflow: visible !important;
@@ -62,3 +63,6 @@
 .swiper-slide {
   transition: transform 0.5s ease;
 }
+
+
+

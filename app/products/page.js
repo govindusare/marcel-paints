@@ -17,8 +17,8 @@ export default function Productpage() {
 
       {/* Paint Products Section */}
       <section className="pb-10">
-        <div className="text-center mt-[8.75rem] flex flex-col items-center justify-center mx-[1rem]">
-          <h2 className="w-[12.5rem] sm:w-full text-gradient text-[1.75rem] md:text-[2.625rem] font-medium sm:font-semibold mb-4">
+       <div className="mt-[50px] sm:mt-[8.75rem] flex flex-col items-center justify-center mx-[1rem] text-center">
+          <h2 className="w-[12.5rem] sm:w-full text-gradient text-[1.75rem] md:text-[2.625rem] font-medium sm:font-semibold mb-4 ">
             Our Premium Paint Products
           </h2>
           <p className="text-gray-600 text-[0.875rem] sm:text-[1.5rem] w-full sm:w-[65%]">
@@ -50,7 +50,7 @@ export default function Productpage() {
                   alt={product.name}
                   width={400}
                   height={400}
-                  className="object-contain max-h-[17.5rem] sm:max-h-[20rem] md:max-h-[25rem] "
+                  className="object-contain max-h-[17.5rem] sm:max-h-[20rem] md:max-h-[25rem] ]"
                 />
               </div>
 
@@ -74,29 +74,37 @@ export default function Productpage() {
                     {product.keyfeatures?.map((feature) => (
                       <div
                         key={feature.id}
-                        className="w-[2.5rem] h-[2.5rem] md:w-[3.25rem] md:h-[3.25rem] flex-shrink-0 flex items-center justify-center border rounded-lg bg-gray-50 shadow-sm"
+                        className="  flex-shrink-0 flex items-center"
                       >
                         <Image
-                          src={
-                            feature.icon.startsWith('/')
-                              ? feature.icon
-                              : `/${feature.icon}`
-                          }
+                          // src={
+                          //   // feature.icon.startsWith('/')
+                          //   //   ? feature.icon
+                          //   //   : `/${feature.icon}`
+
+                          // }
+                          src={feature.icon}
                           alt={feature.name}
                           width={20}
                           height={20}
                           title={feature.name}
-                          className="object-contain"
+                          priority={true}
+                          className="object-contain w-[2.5rem] h-[2.5rem]"
+
                         />
                       </div>
                     ))}
                   </div>
 
-                  <div className='mt-[1.5rem] sm:mt-[2.813rem]'>
-                    <button onClick={() => router.push(`/products/${product.id}`)} className="bg-gradient text-white text-[1rem] sm:text-[1.25rem] rounded-[2.188rem] px-[1.5rem] py-[0.5rem] sm:px-[2.5rem] sm:py-[1rem] cursor-pointer">
+                  <div className='mt-[1.5rem] sm:mt-[2.813rem] flex justify-center sm:block'>
+                    <button
+                      onClick={() => router.push(`/products/${product.id}`)}
+                      className="bg-gradient text-white text-[1rem] sm:text-[1.25rem] rounded-[2.188rem] px-[1.5rem] py-[0.5rem] sm:px-[2.5rem] sm:py-[1rem] cursor-pointer"
+                    >
                       View Product
                     </button>
                   </div>
+
                 </div>
               </div>
             </div>

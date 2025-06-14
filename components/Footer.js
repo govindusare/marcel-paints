@@ -18,7 +18,7 @@ export default function Footer() {
         <div className="flex flex-col gap-6 lg:pl-[72px]">
           <div className="hidden sm:flex items-center gap-4">
             <Image
-              src="/assets/Logofooter.svg"
+              src="/assets/logofooter.svg"
               alt="Marcel Logo"
               width={126}
               height={89}

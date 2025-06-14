@@ -3,10 +3,21 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
+import { FaChevronDown } from "react-icons/fa";
 
 const navLinks = [
   { href: "/", label: "Home", path: "" },
-  { href: "/products", label: "Products", path: "products" },
+  {
+    href: "/products",
+    label: "Products",
+    path: "products",
+    dropdown: [
+      { label: "Paints", href: "/products/paints" },
+      { label: "Construction Chemicals – Tiles", href: "/products/construction-chemicals" },
+      { label: "Special Applications Coatings", href: "/products/special-coatings" },
+      { label: "Raw Materials Sourcing", href: "/products/raw-materials" },
+    ],
+  },
   { href: "/about-us", label: "About Us", path: "about-us" },
   { href: "/clients", label: "Clients", path: "clients" },
   { href: "/contact-us", label: "Contact Us", path: "contact-us" },
@@ -15,12 +26,11 @@ const navLinks = [
 function Header() {
   const router = useRouter();
   const path = usePathname();
-
-  // To extract only the first segment after the /
   const pathname = path.split("/")[1] || "";
-  // console.log("pathname", pathname);
 
   const [isOpen, setIsOpen] = useState(false);
+  const [desktopDropdown, setDesktopDropdown] = useState(null);
+  const [mobileDropdown, setMobileDropdown] = useState(null);
 
   return (
     <header className="w-full bg-white px-[2.625rem]">
@@ -29,19 +39,52 @@ function Header() {
         <Link href="/" className="flex items-center gap-2">
           <img src="/assets/logo.svg" alt="Marcel Paints Logo" className="h-10 w-auto" />
         </Link>
+
         <div className="flex gap-10 items-center">
           {/* Desktop Nav Links */}
-          <nav className="hidden md:flex space-x-9 items-center text-sm font-medium text-[#232323] ">
-            {navLinks.map((link, index) => {
-              return (
+          <nav className="hidden md:flex space-x-9 items-center text-sm font-medium text-[#232323]">
+            {navLinks.map((link, index) => (
+              <div key={index} className="relative">
                 <span
-                  key={index}
-                  onClick={() => router.push(link.href)}
-                  className={`${pathname === link.path ? "text-purple-700 border-b-2 border-purple-700" : ""} pb-2 cursor-pointer uppercase`}
+                  onClick={() => {
+                    if (link.dropdown) {
+                      setDesktopDropdown(desktopDropdown === link.label ? null : link.label);
+                    } else {
+                      router.push(link.href);
+                      setDesktopDropdown(null);
+                    }
+                  }}
+                  className={`pb-2 cursor-pointer uppercase flex items-center gap-1 ${
+                    pathname === link.path ? "text-purple-700 border-b-2 border-purple-700" : ""
+                  }`}
                 >
                   {link.label}
-                </span>)
-            })}
+                  {link.dropdown && (
+                    <FaChevronDown
+                      className={`text-xs mt-[1px] transition-transform duration-300 ${
+                        desktopDropdown === link.label ? "rotate-180" : ""
+                      }`}
+                    />
+                  )}
+                </span>
+
+                {/* Dropdown on click */}
+                {link.dropdown && desktopDropdown === link.label && (
+                  <div className="absolute bg-white shadow-lg rounded-md mt-2 z-10 min-w-[240px]">
+                    {link.dropdown.map((item, i) => (
+                      <Link
+                        key={i}
+                        href={item.href}
+                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                        onClick={() => setDesktopDropdown(null)}
+                      >
+                        {item.label}
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
+            ))}
           </nav>
 
           {/* GET A QUOTE Button */}
@@ -54,7 +97,6 @@ function Header() {
             </Link>
           </div>
         </div>
-
 
         {/* Mobile Menu Button */}
         <button
@@ -70,19 +112,9 @@ function Header() {
             xmlns="http://www.w3.org/2000/svg"
           >
             {isOpen ? (
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M6 18L18 6M6 6l12 12"
-              />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
             ) : (
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M4 6h16M4 12h16M4 18h16"
-              />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
             )}
           </svg>
         </button>
@@ -90,23 +122,52 @@ function Header() {
 
       {/* Mobile Menu */}
       {isOpen && (
-        <nav className="md:hidden bg-white px-6 pb-4 space-y-2 text-[#232323] font-medium ">
-
-          {navLinks.map((link, index) => {
-            return (
-              <div key={index}>
-                <span
-                  className={`${pathname === link.path ? "text-purple-700 border-b-2 border-purple-700" : ""} inline-block pb-1 cursor-pointer uppercase`}
-                  onClick={() => {
+        <nav className="md:hidden bg-white px-6 pb-4 space-y-2 text-[#232323] font-medium">
+          {navLinks.map((link, index) => (
+            <div key={index}>
+              <div
+                className={` pb-1 cursor-pointer uppercase flex items-center justify-between ${
+                  pathname === link.path ? "text-purple-700 border-b-2 border-purple-700" : ""
+                }`}
+                onClick={() => {
+                  if (link.dropdown) {
+                    setMobileDropdown(mobileDropdown === link.label ? null : link.label);
+                  } else {
                     router.push(link.href);
-                    setIsOpen(false)
-                  }}
-                >
-                  {link.label}
-                </span>
+                    setIsOpen(false);
+                  }
+                }}
+              >
+                {link.label}
+                {link.dropdown && (
+                  <FaChevronDown
+                    className={`text-xs ml-2 transition-transform duration-300 ${
+                      mobileDropdown === link.label ? "rotate-180" : ""
+                    }`}
+                  />
+                )}
               </div>
-            )
-          })}
+
+              {/* Mobile Dropdown */}
+              {link.dropdown && mobileDropdown === link.label && (
+                <div className="pl-4 mt-1 space-y-1">
+                  {link.dropdown.map((item, i) => (
+                    <div
+                      key={i}
+                      onClick={() => {
+                        router.push(item.href);
+                        setIsOpen(false);
+                        setMobileDropdown(null);
+                      }}
+                      className="cursor-pointer text-sm text-gray-600 hover:text-purple-700"
+                    >
+                      {item.label}
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          ))}
 
           <Link
             href="/get-a-quote"
@@ -120,4 +181,5 @@ function Header() {
     </header>
   );
 }
+
 export default Header;
