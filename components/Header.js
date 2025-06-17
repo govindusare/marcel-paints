@@ -12,10 +12,10 @@ const navLinks = [
     label: "Products",
     path: "products",
     dropdown: [
-      { label: "Paints", href: "/products/paints" },
-      { label: "Construction Chemicals – Tiles", href: "/products/construction-chemicals" },
-      { label: "Special Applications Coatings", href: "/products/special-coatings" },
-      { label: "Raw Materials Sourcing", href: "/products/raw-materials" },
+      { label: "Paints", href: "/paints/products" },
+      { label: "Construction Chemicals – Tiles", href: "/construction-chemicals/products" },
+      { label: "Special Applications Coatings", href: "/coatings/products" },
+      { label: "Raw Materials Sourcing", href: "/raw-materials/products" },
     ],
   },
   { href: "/about-us", label: "About Us", path: "about-us" },
@@ -54,16 +54,14 @@ function Header() {
                       setDesktopDropdown(null);
                     }
                   }}
-                  className={`pb-2 cursor-pointer uppercase flex items-center gap-1 ${
-                    pathname === link.path ? "text-purple-700 border-b-2 border-purple-700" : ""
-                  }`}
+                  className={`pb-2 cursor-pointer uppercase flex items-center gap-1 ${pathname === link.path ? "text-purple-700 border-b-2 border-purple-700" : ""
+                    }`}
                 >
                   {link.label}
                   {link.dropdown && (
                     <FaChevronDown
-                      className={`text-xs mt-[1px] transition-transform duration-300 ${
-                        desktopDropdown === link.label ? "rotate-180" : ""
-                      }`}
+                      className={`text-xs mt-[1px] transition-transform duration-300 ${desktopDropdown === link.label ? "rotate-180" : ""
+                        }`}
                     />
                   )}
                 </span>
@@ -126,9 +124,8 @@ function Header() {
           {navLinks.map((link, index) => (
             <div key={index}>
               <div
-                className={` pb-1 cursor-pointer uppercase flex items-center justify-between ${
-                  pathname === link.path ? "text-purple-700 border-b-2 border-purple-700" : ""
-                }`}
+                className={` pb-1 cursor-pointer uppercase flex items-center justify-between ${pathname === link.path ? "text-purple-700 border-b-2 border-purple-700" : ""
+                  }`}
                 onClick={() => {
                   if (link.dropdown) {
                     setMobileDropdown(mobileDropdown === link.label ? null : link.label);
@@ -141,9 +138,8 @@ function Header() {
                 {link.label}
                 {link.dropdown && (
                   <FaChevronDown
-                    className={`text-xs ml-2 transition-transform duration-300 ${
-                      mobileDropdown === link.label ? "rotate-180" : ""
-                    }`}
+                    className={`text-xs ml-2 transition-transform duration-300 ${mobileDropdown === link.label ? "rotate-180" : ""
+                      }`}
                   />
                 )}
               </div>

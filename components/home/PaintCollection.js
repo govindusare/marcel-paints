@@ -1,5 +1,5 @@
 'use client';
-import { productsData } from '@/lib/data';
+import { paintProductsData } from '@/lib/data';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
@@ -24,7 +24,7 @@ export default function PaintCollection() {
           slidesPerView={1}
           className="pb-10 overflow-visible" // ✅ overflow enabled
         >
-          {productsData.slice(0, 4).map((product, index) => (
+          {paintProductsData.slice(0, 4).map((product, index) => (
             <SwiperSlide key={product.id}>
               <ProductCard product={product} index={index} />
             </SwiperSlide>
@@ -34,7 +34,7 @@ export default function PaintCollection() {
 
       {/* Grid layout for larger screens */}
       <div className="lg:grid grid-cols-4 sm:grid-cols-4 xl:grid-cols-4 gap-6 hidden">
-        {productsData.slice(0, 4).map((product, index) => (
+        {paintProductsData.slice(0, 4).map((product, index) => (
           <ProductCard key={product.id} product={product} index={index} />
         ))}
       </div>
