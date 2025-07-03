@@ -1,48 +1,26 @@
 import Image from 'next/image';
-import { FaStar, FaStarHalfAlt, FaRegStar } from 'react-icons/fa'; // ✅ updated
+import { FaStar, FaStarHalfAlt, FaRegStar } from 'react-icons/fa';
 import TouchWithUs from '@/components/home/TouchWithUs';
 import Link from 'next/link';
-import Product_herosection from '@/components/products/Product_herosection';
+import Product_Id_herosection from '@/components/products/Product_Id_herosection';
 
-const ProductD = async ({ id, productsData }) => {
-    // const { id } = await params;
+const ProductD = async ({ id, category, productsData }) => {
     const product = productsData.find((prod) => prod.id === parseInt(id));
 
     if (!product) {
         return <div className="text-center text-red-500">Product not found</div>;
     }
 
-    // ✅ updated star rendering logic with half stars
-    const renderStars = (rating) => {
-        return Array.from({ length: 5 }, (_, i) => {
-            if (i < Math.floor(rating)) {
-                return <FaStar key={i} className="text-yellow-400 inline-block" />;
-            } else if (i < rating) {
-                return <FaStarHalfAlt key={i} className="text-yellow-400 inline-block" />;
-            } else {
-                return <FaRegStar key={i} className="text-gray-300 inline-block" />;
-            }
-        });
-    };
-
     return (
         <div>
-            <Product_herosection />
+            <Product_Id_herosection
+                title="Wide product range"
+                description="Everything You Need to Fortify Your Infrastructure"
+            />
 
-            {/* ✅ Rating Section */}
-            <div className="mt-[66px] pl-[44px]">
-                <div className="flex items-center text-gray-600 gap-2">
-                    <div className="flex items-center">
-                        {renderStars(product.rating)}
-                    </div>
-                    <span className="text-gray-500 text-sm ml-2">1,325 Reviews</span>
-                </div>
-            </div>
-
-            {/* Product Details Grid Layout */}
             <div className="container mx-auto px-4 py-8">
                 <h2 className="sm:hidden block text-[24px] font-semibold text-purple-700 mb-[60px]">{product.name}</h2>
-                <div className="flex flex-col lg:flex-row-reverse gap-8">
+                <div className="flex flex-col lg:flex-row-reverse gap-15">
                     <div className="w-full">
                         {/* Main Product Image */}
                         <div className="bg-gray-100 rounded-[42px] w-[328px] h-[327px] sm:w-[612px] sm:h-[678px] flex justify-center items-center mx-auto">
@@ -55,29 +33,40 @@ const ProductD = async ({ id, productsData }) => {
                             />
                         </div>
 
-                        {/* Display current product image in variations */}
-                        <div className="flex gap-4 mt-6 justify-center">
-                            {[0, 1, 2].map((index) => (
+                        {/* Display current product sample images in variations */}
+                        <div className="flex gap-10 mt-6 justify-center">
+                            {product.sampalImages.map((image, index) => (
                                 <div
                                     key={index}
-                                    className="rounded-[10px] w-[103px] h-[105px] sm:w-[188px] sm:h-[192px] sm:rounded-[42px] overflow-hidden border border-gray-300 shadow-sm"
                                 >
                                     <Image
-                                        src={product.image}
+                                        src={image}
                                         alt={`Sample ${index + 1}`}
                                         width={96}
                                         height={96}
-                                        className={` transition-transform duration-300 ${index === 0
-                                            ? 'scale-[1.4] w-full h-full'
-                                            : index === 1
-                                                ? 'rotate-[30deg] h-[200px] w-auto -translate-y-1/4'
-                                                : index === 2
-                                                    ? 'rotate-[-25deg] h-[200px] w-auto -translate-y-1/4'
-                                                    : ''
-                                            }`}
+                                        className="transition-transform duration-300 w-full h-full"
                                     />
                                 </div>
                             ))}
+                        </div>
+
+
+                        {/* Coverage section moved here */}
+                        <div className="mt-6">
+                            <h4 className="text-xl font-medium text-gray-800 mb-4">Coverage:</h4>
+                            <div className="flex sm:gap-8 gap-4 flex-col sm:flex-row">
+                                {product.coverage.map((coverage) => (
+                                    <div key={coverage.id} className="flex items-center gap-4">
+                                        <div className="w-[60px] h-[60px] rounded-full hover:bg-gradient-to-r from-purple-500 to-blue-500 flex items-center justify-center hover:text-white border-1 border-[#1210CA] hover:border-none">
+                                            <span className="text-xl font-bold px-3 sm:px-0">{coverage.id}</span>
+                                        </div>
+                                        <div>
+                                            <h5 className="font-semibold">{coverage.name}</h5>
+                                            <p className="text-gray-600">{coverage.description}</p>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
                         </div>
                     </div>
 
@@ -85,7 +74,7 @@ const ProductD = async ({ id, productsData }) => {
                     <div className="w-full">
                         <h2 className="sm:block hidden text-[42px] font-semibold text-purple-700 mb-[60px]">{product.name}</h2>
                         <h3 className="text-[24px] text-gray-700 mb-4 font-medium">{product.headline}</h3>
-                        <p className="text-lg text-gray-600 mb-6">{product.description}</p>
+                        <p className="text-lg text-gray-600 mb-6 ">{product.description}</p>
 
                         {/* Key Features */}
                         <h4 className="text-2xl font-medium text-gray-800 mb-4">Key Features:</h4>
@@ -106,22 +95,14 @@ const ProductD = async ({ id, productsData }) => {
                             ))}
                         </ul>
 
-                        {/* Coverage */}
+                        {/* Recommended For section */}
                         <div className="mt-6">
-                            <h4 className="text-xl font-medium text-gray-800 mb-4">Coverage:</h4>
-                            <div className="flex sm:gap-8 gap-4 flex-col sm:flex-row">
-                                {product.coverage?.length > 0 && product.coverage.map((coverage) => (
-                                    <div key={coverage.id} className="flex items-center gap-4">
-                                        <div className="w-[60px] h-[60px] rounded-full hover:bg-gradient-to-r from-purple-500 to-blue-500 flex items-center justify-center hover:text-white border-1 border-[#1210CA] hover:border-none">
-                                            <span className="text-xl font-bold px-3 sm:px-0">{coverage.id}</span>
-                                        </div>
-                                        <div>
-                                            <h5 className="font-semibold">{coverage.name}</h5>
-                                            <p className="text-gray-600">{coverage.description}</p>
-                                        </div>
-                                    </div>
+                            <h4 className="text-xl font-medium text-gray-800 mb-4">Recommended For:</h4>
+                            <ul className="list-disc list-inside space-y-2 text-gray-600">
+                                {product.RecommendedFor.map((item, index) => (
+                                    <li key={index}>{item}</li>
                                 ))}
-                            </div>
+                            </ul>
                         </div>
                     </div>
                 </div>
@@ -140,7 +121,7 @@ const ProductD = async ({ id, productsData }) => {
                                 key={item.id}
                                 className={`${i === 0 ? 'w-full lg:col-span-2' : ''}`}
                             >
-                                <Link href={`/products/${item.id}`} passHref>
+                                <Link href={`/${category}/products/${item.id}`} passHref>
                                     <div className="relative h-[310px] rounded-[24px] overflow-hidden bg-gray-100">
                                         <div className="flex items-center justify-end w-full">
                                             <Image

@@ -19,7 +19,7 @@ const navLinks = [
     ],
   },
   { href: "/about-us", label: "About Us", path: "about-us" },
-  { href: "/clients", label: "Clients", path: "clients" },
+  // { href: "/clients", label: "Clients", path: "clients" },
   { href: "/contact-us", label: "Contact Us", path: "contact-us" },
 ];
 
@@ -68,7 +68,7 @@ function Header() {
 
                 {/* Dropdown on click */}
                 {link.dropdown && desktopDropdown === link.label && (
-                  <div className="absolute bg-white shadow-lg rounded-md mt-2 z-10 min-w-[240px]">
+                  <div className="absolute bg-white shadow-lg rounded-md mt-2 z-50 min-w-[240px]">
                     {link.dropdown.map((item, i) => (
                       <Link
                         key={i}

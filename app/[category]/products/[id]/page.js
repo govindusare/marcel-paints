@@ -7,11 +7,11 @@ async function ProductDescPage({ params }) {
     return (
         <div>
             {category == "paints" ?
-                <ProductD productsData={paintProductsData} id={id} />
+                <ProductD productsData={paintProductsData} id={id} category={category} />
                 :
-                category == "construction-chemicals" ? <ProductD productsData={constructionChemicalProductsData} id={id} /> :
-                    category == "coatings" ? <ProductD productsData={coatingProductsData} id={id} /> :
-                        category == "raw-materials" ? <ProductD productsData={rawMaterialProductsData} id={id} /> :
+                category == "construction-chemicals" ? <ProductD productsData={constructionChemicalProductsData} id={id} category={category} /> :
+                    category == "coatings" ? <ProductD productsData={coatingProductsData} id={id} category={category} /> :
+                        category == "raw-materials" ? <ProductD productsData={rawMaterialProductsData} id={id} category={category} /> :
                             <p>Invalid Category</p>}
         </div>
     )
