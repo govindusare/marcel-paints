@@ -42,11 +42,11 @@ export default function Productpage({ category, productsData }) {
                     >
                         <div
                             className={`flex flex-col md:flex-row items-center justify-between gap-10 ${index % 2 !== 0 ? 'md:gap-[140px] md:flex-row-reverse' : 'md:gap-[120px]'
-                                } px-4 py-10 md:px-[9.375rem] md:py-[6.25rem] max-w-[1440px] md:h-[45.75rem] mx-auto`}
+                                } px-4 py-10 md:px-[9.375rem] md:py-[6.25rem] max-w-[1440px]  md:min-h-[45.75rem] mx-auto`}
                         >
 
                             {/* Product Image Group with Name Above (Mobile) */}
-                            <div className="flex-1 flex flex-col text-start">
+                            <div className="flex-1 flex flex-col text-start ">
                                 {/* Product Name for mobile view */}
                                 <h3 className="block md:hidden mb-4 text-[1.5rem] font-bold text-gray-900 text-start">
                                     {product.name}
@@ -60,18 +60,28 @@ export default function Productpage({ category, productsData }) {
                                     className="object-contain max-h-[17.5rem] sm:max-h-[20rem] md:max-h-[25rem]"
                                 />
 
-                                {category === 'paints' || category === 'coatings' ? null : (
-                                    <div>
-                                        {/* Reusable Table for Product Details */}
-                                        {product?.tableData && (
-                                            <ReusableTable
-                                                caption={product.name}
-                                                columns={product?.tableData?.columns}
-                                                data={product?.tableData?.data}
-                                            />
-                                        )}
-                                    </div>
-                                )}
+                                
+
+                                {category === 'paints' ? null :
+                                    category === 'coatings' ? <div className="mt-6">
+                                        <div className="text-lg font-semibold mb-2 text-gray-800">Recommended For</div>
+                                        <ul className="list-disc pl-6 text-gray-600">
+                                            {product.RecommendedFor.map((item, index) => (
+                                                <li key={index}>{item}</li>
+                                            ))}
+                                        </ul>
+                                    </div> : (
+                                        <div>
+                                            {/* Reusable Table for Product Details */}
+                                            {product?.tableData && (
+                                                <ReusableTable
+                                                    caption={product.name}
+                                                    columns={product?.tableData?.columns}
+                                                    data={product?.tableData?.data}
+                                                />
+                                            )}
+                                        </div>
+                                    )}
                             </div>
 
                             {/* Product Info */}
@@ -121,7 +131,7 @@ export default function Productpage({ category, productsData }) {
                                                 {product.keyfeatures.map((feature) => (
                                                     <li
                                                         key={feature.id}
-                                                        className="flex items-center text-gray-600 gap-4"
+                                                        className="flex items-start text-gray-600 gap-4"
                                                     >
                                                         <div className="flex-shrink-0 flex">
                                                             <Image
