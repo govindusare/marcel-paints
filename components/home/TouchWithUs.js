@@ -7,7 +7,7 @@ export default function TouchWithUs() {
 
   return (
     <section
-      className="w-full bg-cover bg-center py-16 px-[42px] sm:px-8 md:px-12 lg:px-[2.625rem] flex justify-center items-center rounded-3xl mt-16 mb-24"
+      className="w-full bg-cover bg-center py-16 px-6 sm:px-8 md:px-12 lg:px-[2.625rem] flex justify-center items-center rounded-3xl mt-16 mb-24"
       style={{ backgroundImage: "url('/Getintouch_img.svg')" }}
     >
       <div className="max-w-7xl w-full flex flex-col lg:flex-row items-center justify-center gap-[1.5rem] sm:gap-[5.625rem]">

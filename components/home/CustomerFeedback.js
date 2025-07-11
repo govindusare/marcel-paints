@@ -11,7 +11,7 @@ import "swiper/css/pagination";
 
 export default function CustomerFeedback() {
   return (
-    <section className="py-16 px-4 flex flex-col items-center justify-center w-full ">
+    <section className="py-16 px-4 flex flex-col items-center justify-center w-full overflow-x-hidden">
       {/* Title */}
       <h2 className="text-2xl sm:text-3xl lg:text-[2.625rem] font-semibold bg-gradient-to-r from-purple-600 to-blue-500 bg-clip-text text-transparent mb-4 text-center">
         What Our Customers Say

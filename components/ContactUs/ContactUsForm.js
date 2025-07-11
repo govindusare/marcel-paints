@@ -22,7 +22,7 @@ function ContactUsForm() {
             <p className="text-[#888888]">
               Email, call or complete the form to solve your queries
             </p>
-            <p>Email: info@marcelpaints.com</p>
+            <p>Email: info@marcel.com</p>
             <p>Call: +91 7878 7878 78</p>
             <p>Corporate Office:</p>
             <p className="text-[#888888]">Maharashtra, India 411014</p>

@@ -7,7 +7,7 @@ import { Pagination } from 'swiper/modules';
 
 export default function PaintCollection() {
   return (
-    <section className="w-full mx-auto px-4 sm:px-6 py-10 mt-20 sm:mt-24 lg:mt-[160px] max-w-screen">
+    <section className="w-full mx-auto px-4 sm:px-6 py-10 mt-20 sm:mt-24 lg:mt-[160px] max-w-screen overflow-x-hidden">
       <h2 className="text-center text-purple-700 font-bold text-2xl sm:text-3xl lg:text-[42px] mb-6 sm:mb-8 lg:mb-[36px]">
         Our Premium Paint Collection
       </h2>
@@ -15,29 +15,25 @@ export default function PaintCollection() {
         Discover our range of high-quality paints designed to bring your vision to life. From vibrant interiors to weather-resistant exteriors, we have the perfect solution for every surface.
       </p>
 
-      {/* Mobile Swiper Slider */}
-      <div className="block lg:hidden overflow-scroll">
-        <Swiper
-          modules={[Pagination]}
-          pagination={{ clickable: true }}
-          spaceBetween={16}
-          slidesPerView={1}
-          className="pb-10 overflow-visible" // ✅ overflow enabled
-        >
-          {paintProductsData.slice(0, 4).map((product, index) => (
-            <SwiperSlide key={product.id}>
-              <ProductCard product={product} index={index} />
-            </SwiperSlide>
-          ))}
-        </Swiper>
-      </div>
-
-      {/* Grid layout for larger screens */}
-      <div className="lg:grid grid-cols-4 sm:grid-cols-4 xl:grid-cols-4 gap-6 hidden">
-        {paintProductsData.slice(0, 4).map((product, index) => (
-          <ProductCard key={product.id} product={product} index={index} />
+      {/* Swiper for all screen sizes */}
+      <Swiper
+        modules={[Pagination]}
+        pagination={{ clickable: true }}
+        spaceBetween={24}
+        breakpoints={{
+          0: { slidesPerView: 1 },
+          640: { slidesPerView: 2 },
+          1024: { slidesPerView: 3 },
+          1280: { slidesPerView: 4 },
+        }}
+        className="pb-10"
+      >
+        {paintProductsData.map((product, index) => (
+          <SwiperSlide key={product.id}>
+            <ProductCard product={product} index={index} />
+          </SwiperSlide>
         ))}
-      </div>
+      </Swiper>
     </section>
   );
 }
@@ -49,12 +45,12 @@ function ProductCard({ product, index }) {
   return (
     <div className="bg-gray-100 rounded-[2.625rem] flex flex-col text-center w-full
                     max-w-[350px] sm:max-w-[400px] md:max-w-[480px] lg:max-w-full
-                    h-[620px] gap-[20px] justify-between mx-auto">
+                    h-[520px] lg:h-[620px] gap-[3px] justify-between mx-auto">
       {isEven ? (
         <>
           {/* Image and Button Container */}
           <div className="flex flex-col items-center justify-center rounded-[2.625rem]
-                          w-full h-[300px] sm:h-[310px] relative overflow-hidden">
+                          w-full h-[300px] sm:h-[310px] relative overflow-hidden ">
             <img
               src={product.bgimage}
               alt="Background"
@@ -67,7 +63,7 @@ function ProductCard({ product, index }) {
                 className="w-[120px] sm:w-[151px] h-[120px] sm:h-[148px] object-contain"
               />
               <button
-                className="px-4 sm:px-6 py-2 rounded-[24px] font-medium text-sm sm:text-[1.125rem] w-full max-w-[15rem] min-w-[13rem] h-[2.5rem] sm:h-[3rem] border-1 border-purple-600 bg-white hover:bg-gradient-to-r hover:bg-[#1210CA] hover:border-transparent hover:text-white text-center whitespace-nowrap overflow-hidden "
+                className="px-4 sm:px-6 py-2 rounded-[24px] font-medium text-sm sm:text-[1.125rem] w-full max-w-[15rem] min-w-[13rem] h-auto border-1 border-purple-600 bg-white hover:bg-gradient-to-r hover:bg-[#1210CA] hover:border-transparent hover:text-white text-center  overflow-hidden "
               >
                 {product.name}
               </button>
@@ -75,7 +71,7 @@ function ProductCard({ product, index }) {
           </div>
 
           {/* Text Content */}
-          <div className="flex flex-col px-4 py-5 mt-6">
+          <div className="flex flex-col px-4 pb-5 mt-6 ">
             <h3 className="font-semibold text-lg sm:text-[1.5rem]">{product.headline}</h3>
             <p className="text-sm sm:text-[1rem] text-gray-600 mb-3 line-clamp-4">
               {product.description}
@@ -119,7 +115,7 @@ function ProductCard({ product, index }) {
                 className="w-[120px] sm:w-[151px] h-[120px] sm:h-[148px] object-contain"
               />
               <button
-                className="px-4 sm:px-6 py-2 rounded-[24px] font-medium text-sm sm:text-[1.125rem] w-full max-w-[15rem] min-w-[13rem] h-[2.5rem] sm:h-[3rem] border-1 border-purple-600 bg-white hover:bg-gradient-to-r hover:bg-[#1210CA] hover:border-transparent hover:text-white"
+                className="px-4 sm:px-6 py-2 rounded-[24px] font-medium text-sm sm:text-[1.125rem] w-full max-w-[15rem] min-w-[13rem] h-auto border-1 border-purple-600 bg-white hover:bg-gradient-to-r hover:bg-[#1210CA] hover:border-transparent hover:text-white"
               >
                 {product.name}
               </button>

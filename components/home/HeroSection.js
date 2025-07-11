@@ -2,7 +2,7 @@ import React from 'react';
 
 function HeroSection() {
   return (
-    <section className="relative max-w-7xl mx-auto rounded-xl overflow-hidden mt-3 min-h-[500px] md:min-h-[700px] lg:min-h-[746px]">
+    <section className="p-3 md:p-0 relative max-w-7xl mx-auto rounded-xl overflow-hidden mt-3 min-h-[500px] md:min-h-[700px] lg:min-h-[746px]">
       {/* Background Image */}
       <div className="relative rounded-[2.625rem] bg-slate-600 h-full w-full">
         <img
