@@ -12,35 +12,23 @@ const tenorSans = Tenor_Sans({
 
 export default function Footer() {
   return (
-   <footer className="bg-[#1A1A1A] text-gray-300 px-6 py-12 h-full sm:h-[422px]">
+   <footer className="bg-[#1A1A1A] text-gray-300 px-6 py-12 h-full ">
       <div className="max-w-7xl mx-auto flex flex-col lg:flex-row justify-between gap-12 lg:gap-[12.875rem] ">
         {/* Logo Section with Name in One Line */}
         <div className="flex flex-col gap-6 lg:pl-[72px]">
-          <div className="hidden sm:flex items-center gap-4">
+          <div className="flex items-center gap-4">
             <Image
               src="/assets/logofooter.svg"
               alt="Marcel Logo"
               width={126}
               height={89}
-              className="object-contain"
+              className="object-contain w-20 h-20 sm:w-34"
             />
             <div className={`${tenorSans.className} leading-tight`}>
               <p className="text-[37.87px] tracking-[0.2em] text-white">MARCEL</p>
-              <p className="text-[17.16px] text-gray-300 mt-1 tracking-[0.3em]">P A I N T S</p>
             </div>
           </div>
-
-          <div className="sm:hidden flex items-center gap-4">
-            <Image
-              src="/LogoForMobile.svg"
-              alt="Marcel Logo"
-              width={112}
-              height={30}
-              className="object-contain "
-            />
-          </div>
-
-          {/* Social Icons (Desktop only) */}
+       {/* Social Icons (Desktop only) */}
           <div className=" hidden sm:flex flex-col-2 gap-4 py-[60px]">
             <h4 className="font-semibold text-white">Follow us on</h4>
             <div className="flex gap-3">

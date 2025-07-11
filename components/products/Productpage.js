@@ -46,7 +46,7 @@ export default function Productpage({ category, productsData }) {
                         >
 
                             {/* Product Image Group with Name Above (Mobile) */}
-                            <div className="flex-1 flex flex-col text-start ">
+                            <div className="flex-1 flex flex-col text-start">
                                 {/* Product Name for mobile view */}
                                 <h3 className="block md:hidden mb-4 text-[1.5rem] font-bold text-gray-900 text-start">
                                     {product.name}
@@ -71,7 +71,7 @@ export default function Productpage({ category, productsData }) {
                                             ))}
                                         </ul>
                                     </div> : (
-                                        <div>
+                                        <div className=" ">
                                             {/* Reusable Table for Product Details */}
                                             {product?.tableData && (
                                                 <ReusableTable
